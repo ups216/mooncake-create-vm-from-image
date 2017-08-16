@@ -1,0 +1,68 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/VM_IP.json",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmName": {
+      "type": "string"
+    },
+    "vmSize": {
+      "type": "string",
+      "defaultValue": "Standard_DS1_v2"
+    },
+    "adminUserName": {
+      "type": "string"
+    },
+    "adminPassword": {
+      "type": "securestring"
+    },
+    "networkInterfaceId": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2017-03-30",
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[parameters('vmSize')]"
+        },
+        "storageProfile": {
+          "osDisk": {
+            "osType": "Windows",
+            "name": "lx-tempalte-osDisk.848be549-ca87-4e00-b6e6-7c57c5122dfd.vhd",
+            "createOption": "FromImage",
+            "image": {
+              "uri": "https://lxsysprep02rgdisks295.blob.core.windows.net/system/Microsoft.Compute/Images/images/lx-tempalte-osDisk.848be549-ca87-4e00-b6e6-7c57c5122dfd.vhd"
+            },
+            "vhd": {
+              "uri": "https://lxsysprep02rgdisks295.blob.core.windows.net/vmcontainere63ffb64-3e09-42fb-9f59-40f2e95a37c7/osDisk.e63ffb64-3e09-42fb-9f59-40f2e95a37c7.vhd"
+            },
+            "caching": "ReadWrite"
+          }
+        },
+        "osProfile": {
+          "computerName": "[parameters('vmName')]",
+          "adminUsername": "[parameters('adminUsername')]",
+          "adminPassword": "[parameters('adminPassword')]"
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[parameters('networkInterfaceId')]"
+            }
+          ]
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": true,
+            "storageUri": "https://lxsysprep02rgdiag952.blob.core.windows.net/"
+          }
+        },
+        "provisioningState": 0
+      },
+      "type": "Microsoft.Compute/virtualMachines",
+      "location": "eastasia",
+      "name": "[parameters('vmName')]"
+    }
+  ]
+}

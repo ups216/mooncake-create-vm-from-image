@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminUserName": {
+      "value": "testusername"
+    },
+    "adminPassword": {
+      "value": "P2ssw0rd@123"
+    },
+    "vmSize": {
+      "value": "Standard_D1"
+    },
+    "sourceStorageAccountResourceGroup": {
+      "value": "LX-SYSPREP02-RG"
+    },
+    "sourceImageURI": {
+      "value": "https://lxsysprep02rgdisks295.blob.core.windows.net/system/Microsoft.Compute/Images/images/lx-tempalte-osDisk.848be549-ca87-4e00-b6e6-7c57c5122dfd.vhd"
+    },
+    "customImageName": {
+      "value": "Microsoft.Compute/Images/images/lx-tempalte-osDisk.848be549-ca87-4e00-b6e6-7c57c5122dfd.vhd"
+    },
+    "transferVmName": {
+      "value": "TransferVM"
+    },
+    "newVmName": {
+      "value": "NewVM"
+    }
+  }
+}
